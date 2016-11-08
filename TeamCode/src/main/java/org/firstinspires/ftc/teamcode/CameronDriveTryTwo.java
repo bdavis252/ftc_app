@@ -17,7 +17,7 @@ public class CameronDriveTryTwo extends OpMode{
     DcMotor rightSide;
     DcMotor leftSide;
     Servo beaconArm;
-    //DcMotor Sweeper;
+    DcMotor Sweeper;
 
     public CameronDriveTryTwo (){}
 
@@ -27,14 +27,14 @@ public class CameronDriveTryTwo extends OpMode{
         leftSide = hardwareMap.dcMotor.get("motor2");
         leftSide.setDirection(DcMotor.Direction.REVERSE);
         beaconArm = hardwareMap.servo.get("servo1");
-       // Sweeper = hardwareMap.dcMotor.get("ballSweeper");
+        Sweeper = hardwareMap.dcMotor.get("ballSweeper");
 
     }
     @Override
     public void loop () {
-        double powerLevel = (Math.sqrt((Math.pow(gamepad1.left_stick_y,2) + Math.pow(gamepad1.right_stick_x,2)))) * Math.sqrt(2);
-        rightSide.setPower((gamepad1.left_stick_y + gamepad1.right_stick_x) / powerLevel);
-        leftSide.setPower((gamepad1.left_stick_y - gamepad1.right_stick_x) / powerLevel);
+        // double powerLevel = (Math.sqrt((Math.pow(gamepad1.left_stick_y,2) + Math.pow(gamepad1.right_stick_x,2)))) * Math.sqrt(2);
+        rightSide.setPower((gamepad1.left_stick_y + gamepad1.right_stick_x) / 2);
+        leftSide.setPower((gamepad1.left_stick_y - gamepad1.right_stick_x) / 2);
 
         if (gamepad1.a) {
             beaconArm.setPosition(1);
@@ -43,9 +43,9 @@ public class CameronDriveTryTwo extends OpMode{
             beaconArm.setPosition(0);
         }
 
-        //if (gamepad2.right_bumper) {
-          //  Sweeper.setPower(1);
-        //}
+        if (gamepad2.right_bumper) {
+            Sweeper.setPower(1);
+        }
     }
 
     @Override
