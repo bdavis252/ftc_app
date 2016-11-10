@@ -1,9 +1,12 @@
 package org.firstinspires.ftc.teamcode;
 
+
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
+import com.qualcomm.robotcore.hardware.ColorSensor;
+import com.qualcomm.robotcore.hardware.Servo;
 
 /**
  * Created by djordan on 10/25/16.
@@ -27,8 +30,10 @@ public class AutoRedLong1617 extends LinearOpMode {
 
     boolean isRed = true;
 
+    ColorSensor colorSensor;
     DcMotor rightSide;
     DcMotor leftSide;
+    Servo beaconArm;
 
     @Override
     public void runOpMode() {
@@ -38,13 +43,14 @@ public class AutoRedLong1617 extends LinearOpMode {
          * The init() method of the hardware class does all the work here
          */
         // robot.init(hardwareMap);
-
+        boolean bLedOn = false;
         // Send telemetry message to signify robot waiting;
         telemetry.addData("Status", "Resetting Encoders");    //
         telemetry.update();
 
         leftSide = hardwareMap.dcMotor.get("leftSide");
         rightSide = hardwareMap.dcMotor.get("rightSide");
+        colorSensor = hardwareMap.colorSensor.get("sensor_color");
         leftSide.setDirection(DcMotor.Direction.REVERSE);
 
         leftSide.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -62,14 +68,22 @@ public class AutoRedLong1617 extends LinearOpMode {
 
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
+        colorSensor.enableLed(bLedOn);
 
         // Step through each leg of the path,
         // Note: Reverse movement is obtained by setting a negative distance (not speed)
-        encoderDrive(DRIVE_SPEED, -60, -60, 9.0);  // S3: Reverse 24 Inches with 6 Sec timeout
+        encoderDrive(DRIVE_SPEED, -101, -101, 9.0);  // S3: Reverse 24 Inches with 6 Sec timeout
         if (isRed == true)
             encoderDrive(TURN_SPEED,   3, -3, 4.0);  // S2: Turn Right 12 Inches with 4 Sec timeout
         else
             encoderDrive(TURN_SPEED,   -3, 3, 4.0);
+
+        if (colorSensor.red() > 4) {
+            beaconArm.setPosition(1);
+        }
+        if (colorSensor.blue() > 4) {
+            beaconArm.setPosition(0);
+        }
 
         // robot.leftClaw.setPosition(1.0);            // S4: Stop and close the claw.
         // robot.rightClaw.setPosition(0.0);
@@ -77,6 +91,7 @@ public class AutoRedLong1617 extends LinearOpMode {
 
         // telemetry.addData("Path", "Complete");
         // telemetry.update();
+
     }
 
     /*
