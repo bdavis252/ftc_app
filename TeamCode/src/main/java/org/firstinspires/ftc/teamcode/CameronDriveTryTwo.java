@@ -18,6 +18,7 @@ public class CameronDriveTryTwo extends OpMode{
     DcMotor leftSide;
     Servo beaconArm;
     DcMotor Sweeper;
+    DcMotor Shooter;
 
     public CameronDriveTryTwo (){}
 
@@ -28,6 +29,9 @@ public class CameronDriveTryTwo extends OpMode{
         leftSide.setDirection(DcMotor.Direction.REVERSE);
         beaconArm = hardwareMap.servo.get("servo1");
         Sweeper = hardwareMap.dcMotor.get("ballSweeper");
+
+        gamepad1.reset();
+        gamepad2.reset();
 
     }
     @Override
@@ -45,6 +49,9 @@ public class CameronDriveTryTwo extends OpMode{
 
         if (gamepad2.right_bumper) {
             Sweeper.setPower(1);
+        }
+        if (gamepad2.left_bumper) {
+            Shooter.setPower(1);
         }
     }
 
