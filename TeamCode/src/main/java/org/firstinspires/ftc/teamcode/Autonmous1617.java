@@ -33,6 +33,7 @@ public class Autonmous1617 extends LinearOpMode {
     DcMotor rightSide;
     DcMotor leftSide;
 
+
     @Override
     public void runOpMode() {
 
@@ -48,6 +49,7 @@ public class Autonmous1617 extends LinearOpMode {
 
         leftSide = hardwareMap.dcMotor.get("leftSide");
         rightSide = hardwareMap.dcMotor.get("rightSide");
+        // Reverse needs to be moved out of runOpMode
         leftSide.setDirection(DcMotor.Direction.REVERSE);
 
         leftSide.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
