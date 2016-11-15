@@ -132,7 +132,7 @@ public class Autonmous1617 extends LinearOpMode {
             leftSide.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
             rightSide.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
-            //  sleep(250);   // optional pause after each move
+             sleep(250);   // optional pause after each move
         }
     }
 }
