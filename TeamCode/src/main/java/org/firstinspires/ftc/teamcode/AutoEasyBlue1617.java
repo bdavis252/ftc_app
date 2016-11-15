@@ -13,7 +13,7 @@ import org.firstinspires.ftc.robotcontroller.external.samples.HardwarePushbot;
 /**
  * Created by djordan on 11/7/16.
  */
-
+@Autonomous(name="Blue Auto Easy", group="Pushbot")
 public class AutoEasyBlue1617 extends LinearOpMode {
     /* Declare OpMode members. */
     //HardwarePushbot robot   = new HardwarePushbot();   // Use a Pushbot's hardware

@@ -14,9 +14,9 @@ import org.firstinspires.ftc.robotcontroller.external.samples.HardwarePushbot;
  * Created by djordan on 10/25/16.
  */
 
-@Autonomous(name="Pushbot: Auto Drive By Encoder", group="Pushbot")
+@Autonomous(name="auto1617", group="Pushbot")
 
-public class DevonPutThisHere extends LinearOpMode {
+public class Autonmous1617 extends LinearOpMode {
 
     /* Declare OpMode members. */
     //HardwarePushbot robot   = new HardwarePushbot();   // Use a Pushbot's hardware

@@ -12,7 +12,7 @@ import com.qualcomm.robotcore.hardware.Servo;
  * Created by djordan on 10/25/16.
  */
 
-@Autonomous(name="AutoRed", group="Pushbot")
+@Autonomous(name="Auto Red Long", group="Pushbot")
 
 public class AutoRedLong1617 extends LinearOpMode {
 

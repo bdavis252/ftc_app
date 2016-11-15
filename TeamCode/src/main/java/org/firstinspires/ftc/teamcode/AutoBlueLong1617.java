@@ -14,7 +14,7 @@ import org.firstinspires.ftc.robotcontroller.external.samples.HardwarePushbot;
  * Created by djordan on 10/25/16.
  */
 
-@Autonomous(name="Pushbot: Auto Drive By Encoder", group="Pushbot")
+@Autonomous(name="Blue Auto Long", group="Pushbot")
 
 public class AutoBlueLong1617 extends LinearOpMode {
 
