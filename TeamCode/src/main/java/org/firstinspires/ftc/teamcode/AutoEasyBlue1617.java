@@ -46,6 +46,7 @@ public class AutoEasyBlue1617 extends LinearOpMode {
 
         leftSide = hardwareMap.dcMotor.get("leftSide");
         rightSide = hardwareMap.dcMotor.get("rightSide");
+        // move revserse out of runopmode
         leftSide.setDirection(DcMotor.Direction.REVERSE);
 
         leftSide.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -130,7 +131,7 @@ public class AutoEasyBlue1617 extends LinearOpMode {
             leftSide.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
             rightSide.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
-            //  sleep(250);   // optional pause after each move
+              sleep(250);   // optional pause after each move
         }
     }
 }
