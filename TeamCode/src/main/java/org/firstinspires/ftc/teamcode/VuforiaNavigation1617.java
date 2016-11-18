@@ -348,6 +348,12 @@ public class VuforiaNavigation1617 extends LinearOpMode {
             if (lastLocation != null) {
                 //  RobotLog.vv(TAG, "robot=%s", format(lastLocation));
                 telemetry.addData("Pos", format(lastLocation));
+
+                //TEAM, THIS IS THIS PROPER WAY TO GET THE ANGLES AS FLOATS (NUMBERS)
+                Orientation orientation = Orientation.getOrientation(lastLocation, AxesReference.EXTRINSIC, AxesOrder.XYZ, AngleUnit.DEGREES);
+                telemetry.addData("angle1test", orientation.firstAngle);
+                telemetry.addData("angle2test", orientation.secondAngle); 
+                telemetry.addData("angle3test", orientation.thirdAngle);
             } else {
                 telemetry.addData("Pos", "Unknown");
             }
