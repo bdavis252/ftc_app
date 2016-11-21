@@ -47,12 +47,17 @@ public class AutoRedLong1617 extends LinearOpMode {
     static final double     DRIVE_SPEED             = 0.6;
     static final double     TURN_SPEED              = 0.5;
 
-    boolean isRed = true;
+    static final double     APPROACH_SPEED  = 0.5;
+    static final double     WHITE_THRESHOLD = 0.2;
 
-    ColorSensor colorSensor;
-    DcMotor rightSide;
-    DcMotor leftSide;
+    static boolean isRed;
+
+    static ColorSensor colorSensor;
+    static DcMotor rightSide;
+    static DcMotor leftSide;
     Servo beaconArm;
+    DcMotor Shooter;
+    static boolean bLedOn = false;
 
     public static final String TAG = "Vuforia Sample";
 
@@ -66,24 +71,18 @@ public class AutoRedLong1617 extends LinearOpMode {
     @Override
     public void runOpMode() {
 
-        if ( first == true)
+        if ( first == true) {
             init5754(leftSide, rightSide);
+            first = false;
+        }
 
         /*
          * Initialize the drive system variables.
          * The init() method of the hardware class does all the work here
          */
         // robot.init(hardwareMap);
-        boolean bLedOn = false;
-        // Send telemetry message to signify robot waiting;
-        telemetry.addData("Status", "Resetting Encoders");    //
-        telemetry.update();
 
-        leftSide = hardwareMap.dcMotor.get("leftSide");
-        rightSide = hardwareMap.dcMotor.get("rightSide");
-        colorSensor = hardwareMap.colorSensor.get("sensor_color");
-        // move revserse out of runopmode
-        leftSide.setDirection(DcMotor.Direction.REVERSE);
+        // Send telemetry message to signify robot waiting;
 
         leftSide.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         rightSide.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -100,7 +99,6 @@ public class AutoRedLong1617 extends LinearOpMode {
 
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
-        colorSensor.enableLed(bLedOn);
 
         // Step through each leg of the path,
         // Note: Reverse movement is obtained by setting a negative distance (not speed)
@@ -110,10 +108,23 @@ public class AutoRedLong1617 extends LinearOpMode {
         else
             encoderDrive(TURN_SPEED,   -3, 3, 4.0);
 
-        if (colorSensor.red() > 4) {
+        Orientation orientation = Orientation.getOrientation(lastLocation, AxesReference.EXTRINSIC, AxesOrder.XYZ, AngleUnit.DEGREES);
+        leftSide.setPower(APPROACH_SPEED);
+        rightSide.setPower(APPROACH_SPEED);
+        while (opModeIsActive() && (orientation.firstAngle < WHITE_THRESHOLD)) {
+
+            telemetry.addData("Light Level", orientation.secondAngle);
+            telemetry.update();
+        }
+
+
+        leftSide.setPower(0);
+        rightSide.setPower(0);
+
+        if (colorSensor.red() > 4 && isRed == true) {
             beaconArm.setPosition(1);
         }
-        if (colorSensor.blue() > 4) {
+        if (colorSensor.blue() > 4 && isRed == false) {
             beaconArm.setPosition(0);
         }
 
@@ -136,13 +147,13 @@ public class AutoRedLong1617 extends LinearOpMode {
 
 
         VuforiaTrackable redTarget2 = stonesAndChips.get(1);
-        redTarget.setName("RedTarget2"); // Legos
+        redTarget2.setName("RedTarget2"); // Legos
 
         VuforiaTrackable blueTarget  = stonesAndChips.get(2);
         blueTarget.setName("BlueTarget");  // Tools
 
         VuforiaTrackable blueTarget2  = stonesAndChips.get(3);
-        blueTarget.setName("BlueTarget2"); // Gears
+        blueTarget2.setName("BlueTarget2"); // Gears
 
         List<VuforiaTrackable> allTrackables = new ArrayList<VuforiaTrackable>();
         allTrackables.addAll(stonesAndChips);
@@ -311,9 +322,24 @@ public class AutoRedLong1617 extends LinearOpMode {
 
     }
 
-    public static void init5754(DcMotor left, DcMotor right) {
-    left.setDirection(DcMotor.Direction.REVERSE);
-    first = false;
+    public void init5754(DcMotor leftSide, DcMotor rightSide) {
+    leftSide.setDirection(DcMotor.Direction.REVERSE);
+
+        colorSensor.enableLed(bLedOn);
+
+        telemetry.addData("Status", "Resetting Encoders");    //
+        telemetry.update();
+
+        leftSide = hardwareMap.dcMotor.get("leftSide");
+        rightSide = hardwareMap.dcMotor.get("rightSide");
+        colorSensor = hardwareMap.colorSensor.get("sensor_color");
+
+        if (gamepad1.x)
+            isRed = true;
+        else if (gamepad1.y)
+            isRed = false;
+
+
 }
 }
 
