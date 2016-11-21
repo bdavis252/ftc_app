@@ -139,13 +139,13 @@ public class VuforiaNavigation1617 extends LinearOpMode {
 
 
         VuforiaTrackable redTarget2 = stonesAndChips.get(1);
-        redTarget.setName("RedTarget2"); // Legos
+        redTarget.setName("RedTarget2"); // Legos  //TODO: Change this to redTarget2.setName
 
         VuforiaTrackable blueTarget  = stonesAndChips.get(2);
-        blueTarget.setName("BlueTarget");  // Tools
+        blueTarget.setName("BlueTarget");  // Tools //TODO: Actually this is Legos and the one above is Tools.
 
         VuforiaTrackable blueTarget2  = stonesAndChips.get(3);
-        blueTarget.setName("BlueTarget2"); // Gears
+        blueTarget.setName("BlueTarget2"); // Gears //TODO and this
 
         /** For convenience, gather together all the trackable objects in one easily-iterable collection */
         List<VuforiaTrackable> allTrackables = new ArrayList<VuforiaTrackable>();
@@ -283,7 +283,7 @@ public class VuforiaNavigation1617 extends LinearOpMode {
          * axis towards the origin. A positive rotation about Z (ie: a rotation parallel to the the X-Y
          * plane) is then CCW, as one would normally expect from the usual classic 2D geometry.
          */
-        OpenGLMatrix phoneLocationOnRobot = OpenGLMatrix
+        OpenGLMatrix phoneLocationOnRobot = OpenGLMatrix //TODO: don't forget to place the phone properly once it's time.
                 .translation(mmBotWidth/2,0,0)
                 .multiplied(Orientation.getRotationMatrix(
                         AxesReference.EXTRINSIC, AxesOrder.YZY,
@@ -348,6 +348,12 @@ public class VuforiaNavigation1617 extends LinearOpMode {
             if (lastLocation != null) {
                 //  RobotLog.vv(TAG, "robot=%s", format(lastLocation));
                 telemetry.addData("Pos", format(lastLocation));
+
+                //TODO: TEAM, THIS IS THIS PROPER WAY TO GET THE ANGLES AS FLOATS (NUMBERS)
+                Orientation orientation = Orientation.getOrientation(lastLocation, AxesReference.EXTRINSIC, AxesOrder.XYZ, AngleUnit.DEGREES);
+                telemetry.addData("angle1test", orientation.firstAngle);
+                telemetry.addData("angle2test", orientation.secondAngle);
+                telemetry.addData("angle3test", orientation.thirdAngle);
             } else {
                 telemetry.addData("Pos", "Unknown");
             }
