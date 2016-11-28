@@ -1,11 +1,8 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
-import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.robotcontroller.external.samples.HardwarePushbot;
@@ -13,8 +10,8 @@ import org.firstinspires.ftc.robotcontroller.external.samples.HardwarePushbot;
 /**
  * Created by djordan on 11/7/16.
  */
-@Autonomous(name="Blue Auto Easy", group="Pushbot")
-public class AutoEasyBlue1617 extends LinearOpMode {
+@Autonomous(name="Red Auto Easy", group="Pushbot")
+public class AutoEasyRed1617 extends LinearOpMode {
     /* Declare OpMode members. */
     HardwarePushbot         robot   = new HardwarePushbot();
     //HardwarePushbot robot   = new HardwarePushbot();   // Use a Pushbot's hardware
@@ -68,7 +65,7 @@ public class AutoEasyBlue1617 extends LinearOpMode {
 
         // Step through each leg of the path,
         // Note: Reverse movement is obtained by setting a negative distance (not speed)
-        encoderDrive(TURN_SPEED,   12, -12, 4.0);  // S2: Turn Right 12 Inches with 4 Sec timeout
+        encoderDrive(TURN_SPEED,   -12, 12, 4.0);  // S2: Turn Right 12 Inches with 4 Sec timeout
         encoderDrive(DRIVE_SPEED, -48, -48, 9.0);  // S3: Reverse 24 Inches with 6 Sec timeout
 
         // robot.leftClaw.setPosition(1.0);            // S4: Stop and close the claw.

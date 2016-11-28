@@ -46,6 +46,7 @@ public class HardwarePushbot
     /* Initialize standard Hardware interfaces */
     public void init(HardwareMap ahwMap) {
         // Save reference to Hardware map
+
         hwMap = ahwMap;
 
         // Define and Initialize Motors
