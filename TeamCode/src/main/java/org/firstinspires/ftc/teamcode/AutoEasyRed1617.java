@@ -27,8 +27,13 @@ public class AutoEasyRed1617 extends LinearOpMode {
     DcMotor rightSide;
     DcMotor leftSide;
 
+    public static int first = 0;
+
     @Override
     public void runOpMode() {
+
+        if (first == 0)
+            startup();
 
         // Send telemetry message to signify robot waiting;
         telemetry.addData("Status", "Resetting Encoders");    //
@@ -36,8 +41,7 @@ public class AutoEasyRed1617 extends LinearOpMode {
 
         leftSide = hardwareMap.dcMotor.get("leftSide");
         rightSide = hardwareMap.dcMotor.get("rightSide");
-        // move revserse out of runopmode
-        leftSide.setDirection(DcMotor.Direction.REVERSE);
+
 
         leftSide.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         rightSide.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -66,6 +70,11 @@ public class AutoEasyRed1617 extends LinearOpMode {
 
         // telemetry.addData("Path", "Complete");
         // telemetry.update();
+    }
+
+    public void startup() {
+        leftSide.setDirection(DcMotor.Direction.REVERSE);
+        first = 1;
     }
 
     /*
