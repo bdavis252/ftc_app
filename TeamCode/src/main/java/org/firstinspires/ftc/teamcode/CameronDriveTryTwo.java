@@ -29,6 +29,7 @@ public class CameronDriveTryTwo extends OpMode{
         leftSide.setDirection(DcMotor.Direction.REVERSE);
         beaconArm = hardwareMap.servo.get("servo1");
         Sweeper = hardwareMap.dcMotor.get("ballSweeper");
+        Shooter = hardwareMap.dcMotor.get("shooter");
 
         gamepad1.reset();
         gamepad2.reset();
@@ -43,9 +44,11 @@ public class CameronDriveTryTwo extends OpMode{
         if (gamepad2.a) {
             beaconArm.setPosition(1);
         }
-        if (gamepad2.b) {
+       else if (gamepad2.b) {
             beaconArm.setPosition(0);
         }
+        else
+            beaconArm.setPosition(.5);
 
         while (gamepad2.right_bumper) {
             Sweeper.setPower(1);
