@@ -34,12 +34,20 @@ public class CameronDriveTryTwo extends OpMode{
         gamepad1.reset();
         gamepad2.reset();
 
+        rightSide.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        leftSide.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
+
+
     }
     @Override
     public void loop () {
         // double powerLevel = (Math.sqrt((Math.pow(gamepad1.left_stick_y,2) + Math.pow(gamepad1.right_stick_x,2)))) * Math.sqrt(2);
-        rightSide.setPower((gamepad1.left_stick_y + gamepad1.right_stick_x) / 2);
-        leftSide.setPower((gamepad1.left_stick_y - gamepad1.right_stick_x) / 2);
+       // rightSide.setPower((gamepad1.left_stick_y + gamepad1.right_stick_x) / 2);
+       // leftSide.setPower((gamepad1.left_stick_y - gamepad1.right_stick_x) / 2);
+
+        rightSide.setPower(1);
+        leftSide.setPower(1);/;
 
         if (gamepad2.a) {
             beaconArm.setPosition(1);
@@ -47,14 +55,14 @@ public class CameronDriveTryTwo extends OpMode{
        else if (gamepad2.b) {
             beaconArm.setPosition(0);
         }
-        else
-            beaconArm.setPosition(.5);
+
 
         if (gamepad2.right_bumper) {
             Sweeper.setPower(1);
         }
         else
             Sweeper.setPower(0);
+
         if (gamepad2.left_bumper) {
             Shooter.setPower(1);
         }
