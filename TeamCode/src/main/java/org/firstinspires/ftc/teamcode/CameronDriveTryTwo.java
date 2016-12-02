@@ -53,9 +53,13 @@ public class CameronDriveTryTwo extends OpMode{
         if (gamepad2.right_bumper) {
             Sweeper.setPower(1);
         }
+        else
+            Sweeper.setPower(0);
         if (gamepad2.left_bumper) {
             Shooter.setPower(1);
         }
+        else
+            Shooter.setPower(0);
     }
 
     @Override
