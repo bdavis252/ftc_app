@@ -50,10 +50,10 @@ public class CameronDriveTryTwo extends OpMode{
         else
             beaconArm.setPosition(.5);
 
-        while (gamepad2.right_bumper) {
+        if (gamepad2.right_bumper) {
             Sweeper.setPower(1);
         }
-        while (gamepad2.left_bumper) {
+        if (gamepad2.left_bumper) {
             Shooter.setPower(1);
         }
     }
