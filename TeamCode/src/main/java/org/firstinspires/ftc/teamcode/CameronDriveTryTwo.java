@@ -47,7 +47,7 @@ public class CameronDriveTryTwo extends OpMode{
        // leftSide.setPower((gamepad1.left_stick_y - gamepad1.right_stick_x) / 2);
 
         rightSide.setPower(1);
-        leftSide.setPower(1);/;
+        leftSide.setPower(1);
 
         if (gamepad2.a) {
             beaconArm.setPosition(1);
