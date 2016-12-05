@@ -4,17 +4,15 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.*;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 
 
 /**
  * Created by cjames on 10/25/16.
  */
-@TeleOp(name = "CDrive", group = "Iterative OpMode")
+@TeleOp(name = "TCDrive", group = "Iterative OpMode")
 
-public class CameronDriveTryTwo extends OpMode {
+public class TCDrive extends OpMode {
     DcMotor rightSide;
     DcMotor leftSide;
     Servo beaconArm;
@@ -24,7 +22,7 @@ public class CameronDriveTryTwo extends OpMode {
     //double leftPower = gamepad1.left_stick_y;
     //double rightPower = gamepad1.right_stick_y;
 
-    public CameronDriveTryTwo() {
+    public TCDrive() {
     }
 
     @Override
@@ -34,7 +32,6 @@ public class CameronDriveTryTwo extends OpMode {
         leftSide.setDirection(DcMotor.Direction.REVERSE);
         beaconArm = hardwareMap.servo.get("servo1");
         Sweeper = hardwareMap.dcMotor.get("ballSweeper");
-        Sweeper.setDirection(DcMotor.Direction.REVERSE);
         Shooter = hardwareMap.dcMotor.get("shooter");
 
         gamepad1.reset();
@@ -53,26 +50,24 @@ public class CameronDriveTryTwo extends OpMode {
          leftSide.setPower((gamepad1.left_stick_y - gamepad1.right_stick_x) / 2);
 
 
-        if (gamepad1.a) {
+        if (gamepad2.a) {
             beaconArm.setPosition(1);
         }
-        if (gamepad1.b) {
+       if (gamepad2.b) {
             beaconArm.setPosition(0);
         }
-        if (gamepad1.x){
+        if (gamepad2.x){
             beaconArm.setPosition(.5);
         }
 
 
-        if (gamepad1.right_bumper) {
+        if (gamepad2.right_bumper) {
             Sweeper.setPower(1);
         }
-        else if (gamepad1.y)
-            Sweeper.setPower(-1);
         else
             Sweeper.setPower(0);
 
-        if (gamepad1.left_bumper) {
+        if (gamepad2.left_bumper) {
             Shooter.setPower(1);
         }
         else

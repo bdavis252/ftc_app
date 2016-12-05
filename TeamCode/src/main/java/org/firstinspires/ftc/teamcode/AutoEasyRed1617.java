@@ -32,15 +32,15 @@ public class AutoEasyRed1617 extends LinearOpMode {
     @Override
     public void runOpMode() {
 
+        leftSide = hardwareMap.dcMotor.get("motor2");
+        rightSide = hardwareMap.dcMotor.get("motor1");
+
         if (first == 0)
             startup();
 
         // Send telemetry message to signify robot waiting;
         telemetry.addData("Status", "Resetting Encoders");    //
         telemetry.update();
-
-        leftSide = hardwareMap.dcMotor.get("leftSide");
-        rightSide = hardwareMap.dcMotor.get("rightSide");
 
 
         leftSide.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -61,8 +61,8 @@ public class AutoEasyRed1617 extends LinearOpMode {
 
         // Step through each leg of the path,
         // Note: Reverse movement is obtained by setting a negative distance (not speed)
-        encoderDrive(TURN_SPEED,   -12, 12, 4.0);  // S2: Turn Right 12 Inches with 4 Sec timeout
-        encoderDrive(DRIVE_SPEED, -48, -48, 9.0);  // S3: Reverse 24 Inches with 6 Sec timeout
+        encoderDrive(TURN_SPEED,   -0, 0, 4.0);  // S2: Turn Right 12 Inches with 4 Sec timeout
+        encoderDrive(DRIVE_SPEED, -36, 36, 9.0);  // S3: Reverse 24 Inches with 6 Sec timeout
 
         // robot.leftClaw.setPosition(1.0);            // S4: Stop and close the claw.
         // robot.rightClaw.setPosition(0.0);
