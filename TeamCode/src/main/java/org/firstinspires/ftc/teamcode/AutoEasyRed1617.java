@@ -60,7 +60,6 @@ public class AutoEasyRed1617 extends LinearOpMode {
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
         Shooter.setPower(1.0);
-        Shooter.setPower(-1.0);
         runtime.reset();
         while (opModeIsActive() && (runtime.seconds() < 5.7)) {
             telemetry.addData("Path", "Leg 2: %2.5f S Elapsed", runtime.seconds());
