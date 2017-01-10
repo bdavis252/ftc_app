@@ -26,6 +26,7 @@ public class AutoEasyRed1617 extends LinearOpMode {
 
     DcMotor rightSide;
     DcMotor leftSide;
+    DcMotor Shooter;
 
     public static int first = 0;
 
@@ -34,7 +35,7 @@ public class AutoEasyRed1617 extends LinearOpMode {
 
         leftSide = hardwareMap.dcMotor.get("motor2");
         rightSide = hardwareMap.dcMotor.get("motor1");
-
+        Shooter = hardwareMap.dcMotor.get("shooter");
         if (first == 0)
             startup();
 
@@ -58,7 +59,13 @@ public class AutoEasyRed1617 extends LinearOpMode {
 
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
-
+        Shooter.setPower(1.0);
+        Shooter.setPower(-1.0);
+        runtime.reset();
+        while (opModeIsActive() && (runtime.seconds() < 5.7)) {
+            telemetry.addData("Path", "Leg 2: %2.5f S Elapsed", runtime.seconds());
+            telemetry.update();
+        }
         // Step through each leg of the path,
         // Note: Reverse movement is obtained by setting a negative distance (not speed)
         encoderDrive(TURN_SPEED,   -0, 0, 4.0);  // S2: Turn Right 12 Inches with 4 Sec timeout
