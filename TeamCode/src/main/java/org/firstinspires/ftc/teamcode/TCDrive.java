@@ -17,8 +17,8 @@ public class TCDrive extends OpMode {
     DcMotor leftSide;
     Servo beaconArm;
     DcMotor Sweeper;
-    DcMotor Shooter;
-
+    DcMotor Shooter1;
+    DcMotor Shooter2;
     //double leftPower = gamepad1.left_stick_y;
     //double rightPower = gamepad1.right_stick_y;
 
@@ -30,9 +30,10 @@ public class TCDrive extends OpMode {
         rightSide = hardwareMap.dcMotor.get("motor1");
         leftSide = hardwareMap.dcMotor.get("motor2");
         leftSide.setDirection(DcMotor.Direction.REVERSE);
-        beaconArm = hardwareMap.servo.get("servo1");
+        beaconArm = hardwareMap.servo.get("beacon");
         Sweeper = hardwareMap.dcMotor.get("ballSweeper");
-        Shooter = hardwareMap.dcMotor.get("shooter");
+        Shooter1 = hardwareMap.dcMotor.get("shooter1");
+        Shooter2 = hardwareMap.dcMotor.get("shooter2");
 
         gamepad1.reset();
         gamepad2.reset();
@@ -50,10 +51,10 @@ public class TCDrive extends OpMode {
          leftSide.setPower((gamepad1.left_stick_y - gamepad1.right_stick_x) / 2);
 
 
-        if (gamepad2.a) {
+        if (gamepad2.right_bumper) {
             beaconArm.setPosition(1);
         }
-       if (gamepad2.b) {
+       if (gamepad2.left_bumper) {
             beaconArm.setPosition(0);
         }
         if (gamepad2.x){
@@ -61,17 +62,19 @@ public class TCDrive extends OpMode {
         }
 
 
-        if (gamepad2.right_bumper) {
+        if (gamepad2.a) {
             Sweeper.setPower(1);
         }
         else
             Sweeper.setPower(0);
 
-        if (gamepad2.left_bumper) {
-            Shooter.setPower(1);
+        if (gamepad2.b) {
+            Shooter1.setPower(1);
+            Shooter2.setPower(1);
         }
         else
-            Shooter.setPower(0);
+            Shooter1.setPower(0);
+            Shooter2.setPower(0);
 
     }
 
