@@ -15,7 +15,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 public class TCDrive extends OpMode {
     DcMotor rightSide;
     DcMotor leftSide;
-    Servo beaconArm;
+    DcMotor beaconArm;
     DcMotor Sweeper;
     DcMotor Shooter1;
     DcMotor Shooter2;
@@ -30,7 +30,7 @@ public class TCDrive extends OpMode {
         rightSide = hardwareMap.dcMotor.get("motor1");
         leftSide = hardwareMap.dcMotor.get("motor2");
         leftSide.setDirection(DcMotor.Direction.REVERSE);
-        beaconArm = hardwareMap.servo.get("beacon");
+        beaconArm = hardwareMap.dcMotor.get("beacon");
         Sweeper = hardwareMap.dcMotor.get("ballSweeper");
         Shooter1 = hardwareMap.dcMotor.get("shooter1");
         Shooter2 = hardwareMap.dcMotor.get("shooter2");
@@ -51,26 +51,26 @@ public class TCDrive extends OpMode {
          leftSide.setPower((gamepad1.left_stick_y - gamepad1.right_stick_x) / 2);
 
 
-        if (gamepad2.right_bumper) {
-            beaconArm.setPosition(1);
+        if (gamepad2.right_bumper) { //TODO needs a stop in code unless we build a mechanical stop.
+            beaconArm.setPower(-0.5);
         }
        if (gamepad2.left_bumper) {
-            beaconArm.setPosition(0);
+            beaconArm.setPower(0.5);
         }
         if (gamepad2.x){
-            beaconArm.setPosition(.5);
+            beaconArm.setPower(0);
         }
 
 
         if (gamepad2.a) {
-            Sweeper.setPower(1);
+            Sweeper.setPower(-1);
         }
         else
             Sweeper.setPower(0);
 
         if (gamepad2.b) {
             Shooter1.setPower(1);
-            Shooter2.setPower(1);
+            Shooter2.setPower(-1);
         }
         else
             Shooter1.setPower(0);
