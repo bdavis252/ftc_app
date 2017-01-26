@@ -29,7 +29,7 @@ public class AutoEasyBlue1617 extends LinearOpMode {
 
     DcMotor rightSide;
     DcMotor leftSide;
-    DcMotor Shooter;
+
     public static int first = 0;
 
     @Override
@@ -61,25 +61,19 @@ public class AutoEasyBlue1617 extends LinearOpMode {
 
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
-        Shooter.setPower(1.0);
-        Shooter.setPower(-1.0);
-        runtime.reset();
-        while (opModeIsActive() && (runtime.seconds() < 5.7)) {
-            telemetry.addData("Path", "Leg 2: %2.5f S Elapsed", runtime.seconds());
-            telemetry.update();
-        }
-            // Step through each leg of the path,
-            // Note: Reverse movement is obtained by setting a negative distance (not speed)
-            encoderDrive(TURN_SPEED, 0, -0, 4.0);  // S2: Turn Right 12 Inches with 4 Sec timeout
-            encoderDrive(DRIVE_SPEED, 36, -36, 9.0);  // S3: Reverse 24 Inches with 6 Sec timeout
 
-            // robot.leftClaw.setPosition(1.0);            // S4: Stop and close the claw.
-            // robot.rightClaw.setPosition(0.0);
-            // sleep(1000);     // pause for servos to move
+        // Step through each leg of the path,
+        // Note: Reverse movement is obtained by setting a negative distance (not speed)
+        encoderDrive(TURN_SPEED,   0, -0, 4.0);  // S2: Turn Right 12 Inches with 4 Sec timeout
+        encoderDrive(DRIVE_SPEED, 36, -36, 9.0);  // S3: Reverse 24 Inches with 6 Sec timeout
 
-            // telemetry.addData("Path", "Complete");
-            // telemetry.update();
-        }
+        // robot.leftClaw.setPosition(1.0);            // S4: Stop and close the claw.
+        // robot.rightClaw.setPosition(0.0);
+        // sleep(1000);     // pause for servos to move
+
+        // telemetry.addData("Path", "Complete");
+        // telemetry.update();
+    }
 
     public void startup() {
         leftSide.setDirection(DcMotor.Direction.REVERSE);

@@ -55,7 +55,7 @@ public class AutoRedLong1617 extends LinearOpMode {
     static ColorSensor colorSensor;
     static DcMotor rightSide;
     static DcMotor leftSide;
-    Servo beaconArm;
+   // Servo beaconArm;
     DcMotor Shooter;
     static boolean bLedOn = false;
 
@@ -122,10 +122,10 @@ public class AutoRedLong1617 extends LinearOpMode {
         rightSide.setPower(0);
 
         if (colorSensor.red() > 4 && isRed == true) {
-            beaconArm.setPosition(1);
+           // beaconArm.setPosition(1);
         }
         if (colorSensor.blue() > 4 && isRed == false) {
-            beaconArm.setPosition(0);
+           // beaconArm.setPosition(0);
         }
 
         // robot.leftClaw.setPosition(1.0);            // S4: Stop and close the claw.

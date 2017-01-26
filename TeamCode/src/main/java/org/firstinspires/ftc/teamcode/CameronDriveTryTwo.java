@@ -17,9 +17,10 @@ import com.qualcomm.robotcore.hardware.Servo;
 public class CameronDriveTryTwo extends OpMode {
     DcMotor rightSide;
     DcMotor leftSide;
-    Servo beaconArm;
+    DcMotor beaconArm;
     DcMotor Sweeper;
-    DcMotor Shooter;
+    DcMotor Shooter1;
+    DcMotor Shooter2;
 
     //double leftPower = gamepad1.left_stick_y;
     //double rightPower = gamepad1.right_stick_y;
@@ -32,10 +33,12 @@ public class CameronDriveTryTwo extends OpMode {
         rightSide = hardwareMap.dcMotor.get("motor1");
         leftSide = hardwareMap.dcMotor.get("motor2");
         leftSide.setDirection(DcMotor.Direction.REVERSE);
-        beaconArm = hardwareMap.servo.get("servo1");
+        beaconArm = hardwareMap.dcMotor.get("beacon");
         Sweeper = hardwareMap.dcMotor.get("ballSweeper");
         Sweeper.setDirection(DcMotor.Direction.REVERSE);
-        Shooter = hardwareMap.dcMotor.get("shooter");
+        Shooter1 = hardwareMap.dcMotor.get("shooter1");
+        Shooter2 = hardwareMap.dcMotor.get("shooter2");
+        Shooter2.setDirection(DcMotor.Direction.REVERSE);
 
         gamepad1.reset();
         gamepad2.reset();
@@ -54,29 +57,30 @@ public class CameronDriveTryTwo extends OpMode {
 
 
         if (gamepad1.a) {
-            beaconArm.setPosition(1);
+            beaconArm.setPower(1);
         }
-        if (gamepad1.b) {
-            beaconArm.setPosition(0);
-        }
-        if (gamepad1.x){
-            beaconArm.setPosition(.5);
+        else if (gamepad1.b) {
+            beaconArm.setPower(-1);
         }
 
 
-        if (gamepad1.right_bumper) {
+
+
+        if (gamepad2.right_bumper) {
             Sweeper.setPower(1);
         }
-        else if (gamepad1.y)
+        else if (gamepad2.y)
             Sweeper.setPower(-1);
         else
             Sweeper.setPower(0);
 
-        if (gamepad1.left_bumper) {
-            Shooter.setPower(1);
+        if (gamepad2.left_bumper) {
+            Shooter1.setPower(1);
+            Shooter2.setPower(1);
         }
         else
-            Shooter.setPower(0);
+            Shooter1.setPower(0);
+            Shooter2.setPower(0);
 
     }
 

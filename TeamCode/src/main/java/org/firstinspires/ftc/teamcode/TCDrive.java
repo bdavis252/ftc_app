@@ -51,10 +51,10 @@ public class TCDrive extends OpMode {
          leftSide.setPower((gamepad1.left_stick_y - gamepad1.right_stick_x) / 2);
 
 
-        if (gamepad2.right_bumper) { //TODO needs a stop in code unless we build a mechanical stop.
+        if (gamepad2.left_bumper) {  //TODO needs a stop in code unless we build a mechanical stop.
             beaconArm.setPower(-0.5);
         }
-       if (gamepad2.left_bumper) {
+       if (gamepad2.right_bumper) {
             beaconArm.setPower(0.5);
         }
         if (gamepad2.x){

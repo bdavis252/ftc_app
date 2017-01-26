@@ -61,12 +61,12 @@ package org.firstinspires.ftc.teamcode;
 public class GabeColorSensor extends LinearOpMode {
 
     ColorSensor colorSensor;    // Hardware Device Object
-    Servo beaconArm;
+   // Servo beaconArm;
 
     @Override
     public void runOpMode() {
 
-        beaconArm = hardwareMap.servo.get("servo1");
+      //  beaconArm = hardwareMap.servo.get("servo1");
 
         // hsvValues is an array that will hold the hue, saturation, and value information.
         float hsvValues[] = {0F,0F,0F};
@@ -124,10 +124,10 @@ public class GabeColorSensor extends LinearOpMode {
             telemetry.addData("Hue", hsvValues[0]);
 
             if (colorSensor.red() > 6) {
-                beaconArm.setPosition(1);
+               // beaconArm.setPosition(1);
             }
             if (colorSensor.blue() > 6) {
-                beaconArm.setPosition(0);
+               // beaconArm.setPosition(0);
             }
 
             // change the background color to match the color detected by the RGB sensor.

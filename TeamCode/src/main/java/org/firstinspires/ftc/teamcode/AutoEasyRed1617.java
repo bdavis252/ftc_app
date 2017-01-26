@@ -65,6 +65,7 @@ public class AutoEasyRed1617 extends LinearOpMode {
             telemetry.addData("Path", "Leg 2: %2.5f S Elapsed", runtime.seconds());
             telemetry.update();
         }
+        Shooter.setPower(0);
         // Step through each leg of the path,
         // Note: Reverse movement is obtained by setting a negative distance (not speed)
         encoderDrive(TURN_SPEED,   -0, 0, 4.0);  // S2: Turn Right 12 Inches with 4 Sec timeout
